@@ -2,7 +2,7 @@
 
 - name: containerd | version check
   ansible.builtin.include_role:
-    name: github-version
+    name: github_version
   vars:
     github_version_current: "{{ containerd_version }}"
     github_version_repo: "{{ containerd_repo }}"

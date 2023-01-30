@@ -2,7 +2,7 @@
 
 - name: runc | version check
   ansible.builtin.include_role:
-    name: github-version
+    name: github_version
   vars:
     github_version_current: "{{ runc_version }}"
     github_version_repo: "{{ runc_repo }}"

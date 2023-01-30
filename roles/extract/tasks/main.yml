@@ -32,7 +32,10 @@
         src: "{{ item.path }}"
         dest: "{{ extract_dest }}/{{ extract_filename }}"
         remote_src: True
+        owner: "{{ extract_owner }}"
+        group: "{{ extract_group }}"
         mode: "{{ extract_mode }}"
+      become: True
       loop: "{{ extract_find.files }}"
       loop_control:
         label: "{{ extract_filename }}"

@@ -9,3 +9,8 @@ download_checksum_regex: ~
 
 # Type of checksum to use in get_url verification
 download_checksum_type: sha256
+
+# File ownership and mode options
+download_owner: root
+download_group: root
+download_mode: "0644"
