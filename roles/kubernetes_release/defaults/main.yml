@@ -1,5 +1,5 @@
 ---
 
-kubernetes_release_archive_dir: "/var/cache/ansible"
+kubernetes_release_cache_dir: "/var/cache/ansible"
 
 kubernetes_release_version: "0.14.0"

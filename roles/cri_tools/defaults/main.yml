@@ -1,5 +1,5 @@
 ---
 
-cri_tools_archive_dir: "{{ cache_dir }}"
+cri_tools_cache_dir: "{{ cache_dir }}"
 
 cri_tools_version: "1.26.0"
