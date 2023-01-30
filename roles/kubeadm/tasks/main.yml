@@ -33,16 +33,6 @@
 
 - meta: flush_handlers
 
-- name: download kubeadm
-  ansible.builtin.include_role:
-    name: download
-  vars:
-    download_checksum_url: "{{ kubeadm_binary_checksum_url }}"
-    download_checksum_dest: "{{ kubeadm_binary_checksum_path }}"
-    download_checksum_only: True
-    download_url: "{{ kubeadm_binary_url }}"
-    download_dest: "{{ kubeadm_binary_path }}"
-
 - name: copy kubeadm binary
   ansible.builtin.copy:
     src: "{{ kubeadm_binary_path }}"

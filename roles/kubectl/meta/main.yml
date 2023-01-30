@@ -2,3 +2,10 @@
 
 dependencies:
   - role: cache
+  - role: download
+    vars:
+      download_checksum_url: "{{ kubectl_binary_checksum_url }}"
+      download_checksum_dest: "{{ kubectl_binary_checksum_path }}"
+      download_checksum_only: True
+      download_url: "{{ kubectl_binary_url }}"
+      download_dest: "{{ kubectl_binary_path }}"

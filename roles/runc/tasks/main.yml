@@ -7,16 +7,6 @@
     github_version_current: "{{ runc_version }}"
     github_version_repo: "{{ runc_repo }}"
 
-- name: download runc
-  ansible.builtin.include_role:
-    name: download
-  vars:
-    download_checksum_url: "{{ runc_binary_checksums_url }}"
-    download_checksum_dest: "{{ runc_binary_checksums_path }}"
-    download_checksum_regex: '^([a-z0-9]+)\s+runc\.{{ runc_architecture }}$'
-    download_url: "{{ runc_binary_url }}"
-    download_dest: "{{ runc_binary_path }}"
-
 - name: copy runc binary
   ansible.builtin.copy:
     src: "{{ runc_binary_path }}"

@@ -16,15 +16,6 @@
     mode: "0755"
   become: True
 
-- name: download cni-plugins
-  ansible.builtin.include_role:
-    name: download
-  vars:
-    download_checksum_url: "{{ cni_plugins_archive_checksum_url }}"
-    download_checksum_dest: "{{ cni_plugins_archive_checksum_path }}"
-    download_url: "{{ cni_plugins_archive_url }}"
-    download_dest: "{{ cni_plugins_archive_path }}"
-
 - name: extract cni-plugins
   ansible.builtin.include_role:
     name: extract
