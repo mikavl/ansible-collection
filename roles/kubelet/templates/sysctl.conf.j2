@@ -1,3 +1,0 @@
-{% for kubeadm_sysctl_variable in kubeadm_sysctl_variables | dict2items %}
-{{ kubeadm_sysctl_variable.key }} = {{ kubeadm_sysctl_variable.value }}
-{% endfor %}

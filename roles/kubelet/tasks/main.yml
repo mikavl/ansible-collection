@@ -13,11 +13,11 @@
   ansible.builtin.include_role:
     name: download
   vars:
-    checksum_url: "{{ kubelet_binary_checksum_url }}"
-    checksum_dest: "{{ kubelet_binary_checksum_path }}"
-    checksum_only: True
-    url: "{{ kubelet_binary_url }}"
-    dest: "{{ kubelet_binary_path }}"
+    download_checksum_url: "{{ kubelet_binary_checksum_url }}"
+    download_checksum_dest: "{{ kubelet_binary_checksum_path }}"
+    download_checksum_only: True
+    download_url: "{{ kubelet_binary_url }}"
+    download_dest: "{{ kubelet_binary_path }}"
 
 - name: copy kubelet binary
   ansible.builtin.copy:
