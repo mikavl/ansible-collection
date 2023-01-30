@@ -1,0 +1,6 @@
+---
+
+- name: setup kubernetes-release
+  hosts: "{{ targets }}"
+  roles:
+    - kubernetes_release

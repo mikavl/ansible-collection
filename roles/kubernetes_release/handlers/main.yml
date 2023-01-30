@@ -1,0 +1,5 @@
+---
+
+- name: kubernetes-release | systemctl daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: True

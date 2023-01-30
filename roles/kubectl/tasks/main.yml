@@ -1,0 +1,30 @@
+---
+
+- name: create kubectl cache dir
+  ansible.builtin.file:
+    path: "{{ kubectl_archive_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: True
+
+- name: download kubectl
+  ansible.builtin.include_role:
+    name: download
+  vars:
+    download_checksum_url: "{{ kubectl_binary_checksum_url }}"
+    download_checksum_dest: "{{ kubectl_binary_checksum_path }}"
+    download_checksum_only: True
+    download_url: "{{ kubectl_binary_url }}"
+    download_dest: "{{ kubectl_binary_path }}"
+
+- name: copy kubectl binary
+  ansible.builtin.copy:
+    src: "{{ kubectl_binary_path }}"
+    dest: /usr/local/bin/kubectl
+    remote_src: True
+    owner: root
+    group: root
+    mode: "0755"
+  become: True

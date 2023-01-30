@@ -1,0 +1,5 @@
+---
+
+kubectl_archive_dir: "/var/cache/ansible"
+
+kubectl_version: "1.26.0"

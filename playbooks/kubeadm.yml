@@ -1,0 +1,6 @@
+---
+
+- name: setup kubeadm
+  hosts: "{{ targets }}"
+  roles:
+    - kubeadm

@@ -1,0 +1,16 @@
+---
+
+kubelet_architecture: "{{ {
+  'aarch64': 'arm64',
+  'x86_64': 'amd64',
+} [ansible_architecture] }}"
+
+kubelet_system: "{{ ansible_system | lower }}"
+
+kubelet_binary_url: "https://dl.k8s.io/release/v{{ kubelet_version }}/bin/{{ kubelet_system }}/{{ kubelet_architecture }}/kubelet"
+
+kubelet_binary_checksum_url: "{{ kubelet_binary_url }}.sha256"
+
+kubelet_binary_path: "{{ kubelet_archive_dir }}/{{ kubelet_binary_url | basename }}-v{{ kubelet_version }}"
+
+kubelet_binary_checksum_path: "{{ kubelet_binary_path }}.sha256"

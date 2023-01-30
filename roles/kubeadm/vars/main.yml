@@ -1,0 +1,28 @@
+---
+
+kubeadm_architecture: "{{ {
+  'aarch64': 'arm64',
+  'x86_64': 'amd64',
+} [ansible_architecture] }}"
+
+kubeadm_system: "{{ ansible_system | lower }}"
+
+kubeadm_binary_url: "https://dl.k8s.io/release/v{{ kubeadm_version }}/bin/{{ kubeadm_system }}/{{ kubeadm_architecture }}/kubeadm"
+
+kubeadm_binary_checksum_url: "{{ kubeadm_binary_url }}.sha256"
+
+kubeadm_binary_path: "{{ kubeadm_archive_dir }}/{{ kubeadm_binary_url | basename }}-v{{ kubeadm_version }}"
+
+kubeadm_binary_checksum_path: "{{ kubeadm_binary_path }}.sha256"
+
+kubeadm_packages:
+  - apparmor
+  - conntrack
+  - ethtool
+  - socat
+
+kubeadm_modules:
+  - br_netfilter
+
+kubeadm_sysctl_variables:
+  net.ipv4.ip_forward: "1"

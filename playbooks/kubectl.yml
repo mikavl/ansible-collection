@@ -1,0 +1,6 @@
+---
+
+- name: setup kubectl
+  hosts: "{{ targets }}"
+  roles:
+    - kubectl

@@ -1,0 +1,96 @@
+---
+
+- name: check kubernetes-release version
+  ansible.builtin.include_role:
+    name: github_version
+  vars:
+    github_version_current: "{{ kubernetes_release_version }}"
+    github_version_repo: "{{ kubernetes_release_repo }}"
+
+- name: kubernetes-release | create archive directory
+  ansible.builtin.file:
+    path: "{{ kubernetes_release_archive_dir }}"
+    state: directory
+
+- name: kubernetes-release | download systemd service unit file
+  ansible.builtin.get_url:
+    url: "{{ kubernetes_release_systemd_service_unit_file_url }}"
+    dest: "{{ kubernetes_release_systemd_service_unit_file_path }}"
+
+- name: kubernetes-release | download systemd service configuration file
+  ansible.builtin.get_url:
+    url: "{{ kubernetes_release_systemd_service_config_file_url }}"
+    dest: "{{ kubernetes_release_systemd_service_config_file_path }}"
+
+- name: kubernetes-release | create systemd service configuration directory
+  ansible.builtin.file:
+    path: "{{ kubernetes_release_systemd_service_config_dir }}"
+    state: directory
+
+- name: kubernetes-release | create temporary directory
+  ansible.builtin.tempfile:
+    state: directory
+  register: kubernetes_release_tempfile
+  changed_when: False
+
+- block:
+
+    - name: kubernetes-release | copy release files to temporary directory
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: "{{ kubernetes_release_tempfile.path }}/{{ kubernetes_release_filename }}"
+        remote_src: True
+      changed_when: False
+      loop:
+        - "{{ kubernetes_release_systemd_service_unit_file_path }}"
+        - "{{ kubernetes_release_systemd_service_config_file_path }}"
+      loop_control:
+        label: "{{ kubernetes_release_filename }}"
+      vars:
+        kubernetes_release_filename: "{{ item | basename }}"
+
+    - name: kubernetes-release | replace release binary path with local
+      ansible.builtin.replace:
+        path: "{{ kubernetes_release_tempfile.path }}/{{ kubernetes_release_filename }}"
+        regexp: /usr/bin
+        replace: /usr/local/bin
+      changed_when: False
+      loop:
+        - "{{ kubernetes_release_systemd_service_unit_file_path }}"
+        - "{{ kubernetes_release_systemd_service_config_file_path }}"
+      loop_control:
+        label: "{{ kubernetes_release_filename }}"
+      vars:
+        kubernetes_release_filename: "{{ item | basename }}"
+
+    - name: kubernetes-release | copy release unit file
+      ansible.builtin.copy:
+        src: "{{ kubernetes_release_tempfile.path }}/{{ kubernetes_release_systemd_service_unit_file_path | basename }}"
+        dest: "/etc/systemd/system/{{ kubernetes_release_systemd_service_unit_file_url | basename }}"
+        remote_src: True
+      vars:
+        kubernetes_release_filename: "{{ kubernetes_release_systemd_service_config_file_url | basename }}"
+      notify:
+        - "kubernetes-release | systemctl daemon-reload"
+
+    - name: kubernetes-release | copy release configuration file
+      ansible.builtin.copy:
+        src: "{{ kubernetes_release_tempfile.path }}/{{ kubernetes_release_systemd_service_config_file_path | basename }}"
+        dest: "{{ kubernetes_release_systemd_service_config_dir }}/{{ kubernetes_release_systemd_service_config_file_url | basename }}"
+        remote_src: True
+      notify:
+        - "kubernetes-release | systemctl daemon-reload"
+
+  always:
+    - name: kubernetes-release | remove temporary directory
+      ansible.builtin.file:
+        path: "{{ kubernetes_release_tempfile.path }}"
+        state: absent
+      changed_when: False
+
+- meta: flush_handlers
+
+- name: kubernetes-release | enable kubelet
+  ansible.builtin.systemd:
+    name: "{{ kubernetes_release_systemd_service_name }}"
+    enabled: True

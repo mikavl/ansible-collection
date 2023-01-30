@@ -1,0 +1,30 @@
+---
+
+- name: create kubelet cache dir
+  ansible.builtin.file:
+    path: "{{ kubelet_archive_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: True
+
+- name: download kubelet
+  ansible.builtin.include_role:
+    name: download
+  vars:
+    checksum_url: "{{ kubelet_binary_checksum_url }}"
+    checksum_dest: "{{ kubelet_binary_checksum_path }}"
+    checksum_only: True
+    url: "{{ kubelet_binary_url }}"
+    dest: "{{ kubelet_binary_path }}"
+
+- name: copy kubelet binary
+  ansible.builtin.copy:
+    src: "{{ kubelet_binary_path }}"
+    dest: /usr/local/bin/kubelet
+    remote_src: True
+    owner: root
+    group: root
+    mode: "0755"
+  become: True

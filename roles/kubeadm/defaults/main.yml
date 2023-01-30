@@ -1,0 +1,5 @@
+---
+
+kubeadm_archive_dir: "/var/cache/ansible"
+
+kubeadm_version: "1.26.0"
