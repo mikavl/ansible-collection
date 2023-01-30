@@ -1,0 +1,6 @@
+---
+
+- name: setup containerd
+  hosts: "{{ targets }}"
+  roles:
+    - containerd

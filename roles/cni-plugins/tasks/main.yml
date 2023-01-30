@@ -1,0 +1,28 @@
+---
+
+- name: cni-plugins | create archive directory
+  ansible.builtin.file:
+    path: "{{ cni_plugins_archive_dir }}"
+    state: directory
+
+- name: cni-plugins | create directory
+  ansible.builtin.file:
+    path: "{{ cni_plugins_dir }}"
+    state: directory
+
+- name: cni-plugins | download archive
+  ansible.builtin.include_role:
+    name: download
+  vars:
+    download_checksum_url: "{{ cni_plugins_archive_checksum_url }}"
+    download_checksum_dest: "{{ cni_plugins_archive_checksum_path }}"
+    download_url: "{{ cni_plugins_archive_url }}"
+    download_dest: "{{ cni_plugins_archive_path }}"
+
+- name: cni-plugins | extract archive
+  ansible.builtin.include_role:
+    name: extract
+  vars:
+    extract_src: "{{ cni_plugins_archive_path }}"
+    extract_dest: "{{ cni_plugins_dir }}"
+    extract_mode: "0755"

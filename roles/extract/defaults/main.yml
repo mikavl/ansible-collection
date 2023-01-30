@@ -1,0 +1,10 @@
+---
+
+# Mode for extracted files
+extract_mode: "0644"
+
+# Patterns to extract from the archive
+extract_patterns: "*"
+
+# Subpath to find files inside the archive
+extract_subpath: ""

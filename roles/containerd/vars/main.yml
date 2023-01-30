@@ -1,0 +1,26 @@
+---
+
+containerd_architecture: "{{ {
+  'aarch64': 'arm64',
+  'x86_64': 'amd64',
+} [ansible_architecture] }}"
+
+containerd_config_dir: /etc/containerd
+
+containerd_config_path: "{{ containerd_config_dir }}/config.toml"
+
+containerd_system: "{{ ansible_system | lower }}"
+
+containerd_archive_url: https://github.com/containerd/containerd/releases/download/v{{ containerd_version }}/containerd-{{ containerd_version }}-{{ containerd_system }}-{{ containerd_architecture }}.tar.gz
+
+containerd_archive_checksum_url: "{{ containerd_archive_url }}.sha256sum"
+
+containerd_archive_path: "{{ containerd_archive_dir }}/{{ containerd_archive_url | basename }}"
+
+containerd_archive_checksum_path: "{{ containerd_archive_dir }}/{{ containerd_archive_checksum_url | basename }}"
+
+containerd_systemd_service_unit_file_url: https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
+
+containerd_systemd_service_name: "{{ containerd_systemd_service_unit_file_url | basename }}"
+
+containerd_systemd_service_unit_file_path: /etc/systemd/system/{{ containerd_systemd_service_name }}

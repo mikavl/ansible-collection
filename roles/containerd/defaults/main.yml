@@ -1,0 +1,5 @@
+---
+
+containerd_archive_dir: "{{ archive_dir }}/containerd"
+
+containerd_version: "1.6.14"
