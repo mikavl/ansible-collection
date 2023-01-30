@@ -9,10 +9,8 @@ cri_tools_repo: kubernetes-sigs/cri-tools
 
 cri_tools_system: "{{ ansible_system | lower }}"
 
-cri_tools_archive_url: "https://github.com/{{ cri_tools_repo }}/releases/download/v{{ cri_tools_version }}/crictl-v{{ cri_tools_version }}-{{ cri_tools_system }}-{{ cri_tools_architecture }}.tar.gz"
+cri_tools_url: "https://github.com/{{ cri_tools_repo }}/releases/download/v{{ cri_tools_version }}/crictl-v{{ cri_tools_version }}-{{ cri_tools_system }}-{{ cri_tools_architecture }}.tar.gz"
+cri_tools_dest: "{{ cri_tools_cache_dir }}/{{ cri_tools_url | basename }}"
 
-cri_tools_archive_checksum_url: "{{ cri_tools_archive_url }}.sha256"
-
-cri_tools_archive_path: "{{ cri_tools_archive_dir }}/{{ cri_tools_archive_url | basename }}"
-
-cri_tools_archive_checksum_path: "{{ cri_tools_archive_dir }}/{{ cri_tools_archive_checksum_url | basename }}"
+cri_tools_checksum_url: "{{ cri_tools_url }}.sha256"
+cri_tools_checksum_dest: "{{ cri_tools_dest }}.sha256"

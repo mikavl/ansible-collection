@@ -32,13 +32,3 @@
     - kubeadm sysctl
 
 - meta: flush_handlers
-
-- name: copy kubeadm binary
-  ansible.builtin.copy:
-    src: "{{ kubeadm_binary_path }}"
-    dest: /usr/local/bin/kubeadm
-    remote_src: True
-    owner: root
-    group: root
-    mode: "0755"
-  become: True

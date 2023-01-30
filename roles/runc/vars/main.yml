@@ -5,7 +5,7 @@ runc_architecture: "{{ {
   'x86_64': 'amd64',
 } [ansible_architecture] }}"
 
-runc_repo: opencontainers/runc
+runc_repo: "opencontainers/runc"
 
 runc_url: "https://github.com/{{ runc_repo }}/releases/download/v{{ runc_version }}/runc.{{ runc_architecture }}"
 

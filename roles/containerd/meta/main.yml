@@ -8,13 +8,13 @@ dependencies:
   - role: cache
   - role: download
     vars:
-      download_checksum_url: "{{ containerd_archive_checksum_url }}"
-      download_checksum_dest: "{{ containerd_archive_checksum_path }}"
-      download_url: "{{ containerd_archive_url }}"
-      download_dest: "{{ containerd_archive_path }}"
+      download_checksum_url: "{{ containerd_checksum_url }}"
+      download_checksum_dest: "{{ containerd_checksum_dest }}"
+      download_url: "{{ containerd_url }}"
+      download_dest: "{{ containerd_dest }}"
   - role: extract
     vars:
-      extract_src: "{{ containerd_archive_path }}"
-      extract_subpath: /bin
-      extract_dest: /usr/local/bin
+      extract_src: "{{ containerd_dest }}"
+      extract_subpath: "/bin"
+      extract_dest: "/usr/local/bin"
       extract_mode: "0755"

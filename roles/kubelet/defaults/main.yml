@@ -1,5 +1,5 @@
 ---
 
-kubelet_archive_dir: "{{ cache_dir }}"
+kubelet_cache_dir: "{{ cache_dir }}"
 
 kubelet_version: "1.26.0"

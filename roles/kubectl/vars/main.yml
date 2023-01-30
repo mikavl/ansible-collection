@@ -7,10 +7,8 @@ kubectl_architecture: "{{ {
 
 kubectl_system: "{{ ansible_system | lower }}"
 
-kubectl_binary_url: "https://dl.k8s.io/release/v{{ kubectl_version }}/bin/{{ kubectl_system }}/{{ kubectl_architecture }}/kubectl"
+kubectl_url: "https://dl.k8s.io/release/v{{ kubectl_version }}/bin/{{ kubectl_system }}/{{ kubectl_architecture }}/kubectl"
+kubectl_dest: "/usr/local/bin/kubectl"
 
-kubectl_binary_checksum_url: "{{ kubectl_binary_url }}.sha256"
-
-kubectl_binary_path: "{{ kubectl_archive_dir }}/{{ kubectl_binary_url | basename }}-v{{ kubectl_version }}"
-
-kubectl_binary_checksum_path: "{{ kubectl_binary_path }}.sha256"
+kubectl_checksum_url: "{{ kubectl_url }}.sha256"
+kubectl_checksum_path: "{{ kubectl_cache_dir }}/{{ kubectl_url | basename }}-v{{ kubectl_version }}.sha256"

@@ -8,13 +8,13 @@ dependencies:
   - role: cache
   - role: download
     vars:
-      download_checksum_url: "{{ cri_tools_archive_checksum_url }}"
-      download_checksum_dest: "{{ cri_tools_archive_checksum_path }}"
-      download_url: "{{ cri_tools_archive_url }}"
-      download_dest: "{{ cri_tools_archive_path }}"
+      download_checksum_url: "{{ cri_tools_checksum_url }}"
+      download_checksum_dest: "{{ cri_tools_checksum_dest }}"
+      download_url: "{{ cri_tools_url }}"
+      download_dest: "{{ cri_tools_dest }}"
   - role: extract
     vars:
-      extract_src: "{{ cri_tools_archive_path }}"
-      extract_dest: /usr/local/bin
-      extract_patterns: crictl
+      extract_src: "{{ cri_tools_dest }}"
+      extract_dest: "/usr/local/bin"
+      extract_patterns: "crictl"
       extract_mode: "0755"

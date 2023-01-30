@@ -1,5 +1,5 @@
 ---
 
-kubectl_archive_dir: "{{ cache_dir }}"
+kubectl_cache_dir: "{{ cache_dir }}"
 
 kubectl_version: "1.26.0"

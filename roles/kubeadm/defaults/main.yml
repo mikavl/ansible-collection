@@ -1,5 +1,5 @@
 ---
 
-kubeadm_archive_dir: "{{ cache_dir }}"
+kubeadm_cache_dir: "{{ cache_dir }}"
 
 kubeadm_version: "1.26.0"

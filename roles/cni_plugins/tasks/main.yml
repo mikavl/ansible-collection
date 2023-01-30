@@ -13,6 +13,6 @@
   ansible.builtin.include_role:
     name: extract
   vars:
-    extract_src: "{{ cni_plugins_archive_path }}"
+    extract_src: "{{ cni_plugins_dest }}"
     extract_dest: "{{ cni_plugins_dir }}"
     extract_mode: "0755"
