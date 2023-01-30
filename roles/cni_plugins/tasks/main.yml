@@ -9,10 +9,14 @@
     mode: "0755"
   become: True
 
-- name: extract cni-plugins
-  ansible.builtin.include_role:
-    name: extract
-  vars:
-    extract_src: "{{ cni_plugins_dest }}"
-    extract_dest: "{{ cni_plugins_dir }}"
-    extract_mode: "0755"
+- name: unarchive cni-plugins
+  ansible.builtin.unarchive:
+    src: "{{ cni_plugins_dest }}"
+    dest: "{{ cni_plugins_dir }}"
+    include:
+      - bin/*
+    remote_src: True
+    owner: root
+    group: root
+    mode: "0755"
+  become: True
