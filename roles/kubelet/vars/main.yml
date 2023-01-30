@@ -8,7 +8,6 @@ kubelet_architecture: "{{ {
 kubelet_system: "{{ ansible_system | lower }}"
 
 kubelet_url: "https://dl.k8s.io/release/v{{ kubelet_version }}/bin/{{ kubelet_system }}/{{ kubelet_architecture }}/kubelet"
-kubelet_path: "/usr/local/bin/kubelet"
+kubelet_dest: "/usr/local/bin/kubelet"
 
 kubelet_checksum_url: "{{ kubelet_url }}.sha256"
-kubelet_checksum_path: "{{ kubelet_cache_dir }}/{{ kubelet_url | basename }}-v{{ kubelet_version }}.sha256"

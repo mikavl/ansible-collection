@@ -11,4 +11,3 @@ kubectl_url: "https://dl.k8s.io/release/v{{ kubectl_version }}/bin/{{ kubectl_sy
 kubectl_dest: "/usr/local/bin/kubectl"
 
 kubectl_checksum_url: "{{ kubectl_url }}.sha256"
-kubectl_checksum_path: "{{ kubectl_cache_dir }}/{{ kubectl_url | basename }}-v{{ kubectl_version }}.sha256"

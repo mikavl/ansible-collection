@@ -12,5 +12,3 @@ runc_url: "https://github.com/{{ runc_repo }}/releases/download/v{{ runc_version
 runc_dest: "/usr/local/bin/runc"
 
 runc_checksums_url: "{{ runc_url | dirname }}/runc.sha256sum"
-
-runc_checksums_dest: "{{ runc_cache_dir }}/{{ runc_checksums_url | basename }}.v{{ runc_version }}"

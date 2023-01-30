@@ -17,7 +17,6 @@ containerd_url: "https://github.com/{{ containerd_repo }}/releases/download/v{{ 
 containerd_dest: "{{ containerd_cache_dir }}/{{ containerd_url | basename }}"
 
 containerd_checksum_url: "{{ containerd_url }}.sha256sum"
-containerd_checksum_dest: "{{ containerd_dest }}.sha256sum"
 
 containerd_service_url: "https://raw.githubusercontent.com/containerd/containerd/main/containerd.service"
 

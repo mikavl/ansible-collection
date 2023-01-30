@@ -9,6 +9,5 @@ dependencies:
   - role: download
     vars:
       download_checksum_url: "{{ cni_plugins_checksum_url }}"
-      download_checksum_dest: "{{ cni_plugins_checksum_dest }}"
       download_url: "{{ cni_plugins_url }}"
       download_dest: "{{ cni_plugins_dest }}"

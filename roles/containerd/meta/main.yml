@@ -9,7 +9,6 @@ dependencies:
   - role: download
     vars:
       download_checksum_url: "{{ containerd_checksum_url }}"
-      download_checksum_dest: "{{ containerd_checksum_dest }}"
       download_url: "{{ containerd_url }}"
       download_dest: "{{ containerd_dest }}"
   - role: extract

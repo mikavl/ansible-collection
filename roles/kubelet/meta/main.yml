@@ -5,7 +5,6 @@ dependencies:
   - role: download
     vars:
       download_checksum_url: "{{ kubelet_checksum_url }}"
-      download_checksum_dest: "{{ kubelet_checksum_dest }}"
       download_checksum_only: True
       download_url: "{{ kubelet_url }}"
       download_dest: "{{ kubelet_dest }}"

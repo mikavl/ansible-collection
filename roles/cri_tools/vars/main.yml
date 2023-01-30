@@ -13,4 +13,3 @@ cri_tools_url: "https://github.com/{{ cri_tools_repo }}/releases/download/v{{ cr
 cri_tools_dest: "{{ cri_tools_cache_dir }}/{{ cri_tools_url | basename }}"
 
 cri_tools_checksum_url: "{{ cri_tools_url }}.sha256"
-cri_tools_checksum_dest: "{{ cri_tools_dest }}.sha256"

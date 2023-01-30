@@ -9,7 +9,6 @@ dependencies:
   - role: download
     vars:
       download_checksum_url: "{{ cri_tools_checksum_url }}"
-      download_checksum_dest: "{{ cri_tools_checksum_dest }}"
       download_url: "{{ cri_tools_url }}"
       download_dest: "{{ cri_tools_dest }}"
   - role: extract

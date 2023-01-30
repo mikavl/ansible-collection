@@ -11,7 +11,6 @@ kubeadm_url: "https://dl.k8s.io/release/v{{ kubeadm_version }}/bin/{{ kubeadm_sy
 kubeadm_dest: "/usr/local/bin/kubeadm"
 
 kubeadm_checksum_url: "{{ kubeadm_url }}.sha256"
-kubeadm_checksum_dest: "{{ kubeadm_cache_dir }}/{{ kubeadm_checksum_url | basename }}.{{ kubeadm_version }}.sha256"
 
 kubeadm_packages:
   - apparmor
