@@ -1,5 +1,5 @@
 ---
 
-runc_archive_dir: "{{ cache_dir }}"
+runc_cache_dir: "{{ cache_dir }}"
 
 runc_version: "1.1.4"

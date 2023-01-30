@@ -7,10 +7,10 @@ runc_architecture: "{{ {
 
 runc_repo: opencontainers/runc
 
-runc_binary_url: "https://github.com/{{ runc_repo }}/releases/download/v{{ runc_version }}/runc.{{ runc_architecture }}"
+runc_url: "https://github.com/{{ runc_repo }}/releases/download/v{{ runc_version }}/runc.{{ runc_architecture }}"
 
-runc_binary_checksums_url: "{{ runc_binary_url | dirname }}/runc.sha256sum"
+runc_dest: "/usr/local/bin/runc"
 
-runc_binary_path: "{{ runc_archive_dir }}/{{ runc_binary_url | basename }}.v{{ runc_version }}"
+runc_checksums_url: "{{ runc_url | dirname }}/runc.sha256sum"
 
-runc_binary_checksums_path: "{{ runc_archive_dir }}/{{ runc_binary_checksums_url | basename }}.v{{ runc_version }}"
+runc_checksums_dest: "{{ runc_cache_dir }}/{{ runc_checksums_url | basename }}.v{{ runc_version }}"
