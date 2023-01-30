@@ -19,5 +19,6 @@ jobs:
       - name: Run playbooks
         run: >
           ansible-playbook playbooks/*.yml
+          --connection local
           --inventory "localhost,"
           --extra-vars "targets=localhost"
