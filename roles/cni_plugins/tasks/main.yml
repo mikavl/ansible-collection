@@ -7,15 +7,6 @@
     github_version_current: "{{ cni_plugins_version }}"
     github_version_repo: "{{ cni_plugins_repo }}"
 
-- name: create cni-plugins cache dir
-  ansible.builtin.file:
-    path: "{{ cni_plugins_archive_dir }}"
-    state: directory
-    owner: root
-    group: root
-    mode: "0755"
-  become: True
-
 - name: create cni-plugins dir
   ansible.builtin.file:
     path: "{{ cni_plugins_dir }}"

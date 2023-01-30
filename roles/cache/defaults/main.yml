@@ -1,0 +1,9 @@
+---
+
+# Directory to save downloaded files into
+cache_dir: "/var/cache/ansible"
+
+# Directory mode and ownership details
+cache_dir_owner: "root"
+cache_dir_group: "root"
+cache_dir_mode: "0755"

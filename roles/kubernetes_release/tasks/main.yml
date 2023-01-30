@@ -7,25 +7,32 @@
     github_version_current: "{{ kubernetes_release_version }}"
     github_version_repo: "{{ kubernetes_release_repo }}"
 
-- name: kubernetes-release | create archive directory
-  ansible.builtin.file:
-    path: "{{ kubernetes_release_archive_dir }}"
-    state: directory
-
 - name: kubernetes-release | download systemd service unit file
   ansible.builtin.get_url:
     url: "{{ kubernetes_release_systemd_service_unit_file_url }}"
     dest: "{{ kubernetes_release_systemd_service_unit_file_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  become: True
 
 - name: kubernetes-release | download systemd service configuration file
   ansible.builtin.get_url:
     url: "{{ kubernetes_release_systemd_service_config_file_url }}"
     dest: "{{ kubernetes_release_systemd_service_config_file_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  become: True
 
 - name: kubernetes-release | create systemd service configuration directory
   ansible.builtin.file:
     path: "{{ kubernetes_release_systemd_service_config_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: True
 
 - name: kubernetes-release | create temporary directory
   ansible.builtin.tempfile:
@@ -68,18 +75,26 @@
         src: "{{ kubernetes_release_tempfile.path }}/{{ kubernetes_release_systemd_service_unit_file_path | basename }}"
         dest: "/etc/systemd/system/{{ kubernetes_release_systemd_service_unit_file_url | basename }}"
         remote_src: True
+        owner: root
+        group: root
+        mode: "0644"
+      become: True
       vars:
         kubernetes_release_filename: "{{ kubernetes_release_systemd_service_config_file_url | basename }}"
       notify:
-        - "kubernetes-release | systemctl daemon-reload"
+        - "kubernetes-release reload"
 
     - name: kubernetes-release | copy release configuration file
       ansible.builtin.copy:
         src: "{{ kubernetes_release_tempfile.path }}/{{ kubernetes_release_systemd_service_config_file_path | basename }}"
         dest: "{{ kubernetes_release_systemd_service_config_dir }}/{{ kubernetes_release_systemd_service_config_file_url | basename }}"
         remote_src: True
+        owner: root
+        group: root
+        mode: "0644"
+      become: True
       notify:
-        - "kubernetes-release | systemctl daemon-reload"
+        - "kubernetes-release reload"
 
   always:
     - name: kubernetes-release | remove temporary directory
@@ -94,3 +109,4 @@
   ansible.builtin.systemd:
     name: "{{ kubernetes_release_systemd_service_name }}"
     enabled: True
+  become: True

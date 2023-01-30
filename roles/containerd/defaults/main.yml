@@ -1,5 +1,5 @@
 ---
 
-containerd_archive_dir: "/var/cache/ansible"
+containerd_archive_dir: "{{ cache_dir }}"
 
 containerd_version: "1.6.16"

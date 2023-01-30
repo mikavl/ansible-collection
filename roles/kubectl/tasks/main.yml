@@ -1,14 +1,5 @@
 ---
 
-- name: create kubectl cache dir
-  ansible.builtin.file:
-    path: "{{ kubectl_archive_dir }}"
-    state: directory
-    owner: root
-    group: root
-    mode: "0755"
-  become: True
-
 - name: download kubectl
   ansible.builtin.include_role:
     name: download

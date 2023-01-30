@@ -7,15 +7,6 @@
     github_version_current: "{{ runc_version }}"
     github_version_repo: "{{ runc_repo }}"
 
-- name: create runc cache dir
-  ansible.builtin.file:
-    path: "{{ runc_archive_dir }}"
-    state: directory
-    owner: root
-    group: root
-    mode: "0755"
-  become: True
-
 - name: download runc
   ansible.builtin.include_role:
     name: download

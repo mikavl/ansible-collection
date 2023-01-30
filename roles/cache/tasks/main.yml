@@ -1,0 +1,10 @@
+---
+
+- name: create cache dir
+  ansible.builtin.file:
+    path: "{{ cache_dir }}"
+    state: directory
+    owner: "{{ cache_dir_owner }}"
+    group: "{{ cache_dir_group }}"
+    mode: "{{ cache_dir_mode }}"
+  become: True

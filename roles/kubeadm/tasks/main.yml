@@ -1,14 +1,5 @@
 ---
 
-- name: create kubeadm cache dir
-  ansible.builtin.file:
-    path: "{{ kubeadm_archive_dir }}"
-    state: directory
-    owner: root
-    group: root
-    mode: "0755"
-  become: True
-
 - name: install kubeadm packages
   ansible.builtin.apt:
     name: "{{ kubeadm_packages }}"

@@ -7,15 +7,6 @@
     github_version_current: "{{ containerd_version }}"
     github_version_repo: "{{ containerd_repo }}"
 
-- name: create containerd cache dir
-  ansible.builtin.file:
-    path: "{{ containerd_archive_dir }}"
-    state: directory
-    owner: root
-    group: root
-    mode: "0755"
-  become: True
-
 - name: download containerd
   ansible.builtin.include_role:
     name: download
