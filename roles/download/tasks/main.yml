@@ -26,7 +26,7 @@
   vars:
     download_checksum_content: "{{ download_checksum.content | b64decode }}"
     download_checksum_content_helper: "{{
-      checksum_content | regex_search(download_checksum_regex, '\\1', multiline=True)
+      download_checksum_content | regex_search(download_checksum_regex, '\\1', multiline=True)
       if download_checksum_regex
       else download_checksum_content.split()[0]
     }}"

@@ -1,0 +1,16 @@
+---
+
+runc_architecture: "{{ {
+  'aarch64': 'arm64',
+  'x86_64': 'amd64',
+} [ansible_architecture] }}"
+
+runc_repo: opencontainers/runc
+
+runc_binary_url: "https://github.com/{{ runc_repo }}/releases/download/v{{ runc_version }}/runc.{{ runc_architecture }}"
+
+runc_binary_checksums_url: "{{ runc_binary_url | dirname }}/runc.sha256sum"
+
+runc_binary_path: "{{ runc_archive_dir }}/{{ runc_binary_url | basename }}.v{{ runc_version }}"
+
+runc_binary_checksums_path: "{{ runc_archive_dir }}/{{ runc_binary_checksums_url | basename }}.v{{ runc_version }}"
