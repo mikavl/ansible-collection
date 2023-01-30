@@ -1,13 +1,13 @@
 ---
 
-- name: cri-tools | version check
+- name: check cri-tools version
   ansible.builtin.include_role:
     name: github_version
   vars:
     github_version_current: "{{ cri_tools_version }}"
     github_version_repo: "{{ cri_tools_repo }}"
 
-- name: cri-tools | create archive directory
+- name: create cri-tools cache dir
   ansible.builtin.file:
     path: "{{ cri_tools_archive_dir }}"
     state: directory
@@ -16,7 +16,7 @@
     mode: "0755"
   become: True
 
-- name: cri-tools | download archive
+- name: download cri-tools
   ansible.builtin.include_role:
     name: download
   vars:
@@ -25,7 +25,7 @@
     download_url: "{{ cri_tools_archive_url }}"
     download_dest: "{{ cri_tools_archive_path }}"
 
-- name: cri-tools | extract archive
+- name: extract cri-tools
   ansible.builtin.include_role:
     name: extract
   vars:

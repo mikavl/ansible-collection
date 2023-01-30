@@ -1,13 +1,13 @@
 ---
 
-- name: runc | version check
+- name: check runc version
   ansible.builtin.include_role:
     name: github_version
   vars:
     github_version_current: "{{ runc_version }}"
     github_version_repo: "{{ runc_repo }}"
 
-- name: runc | create archive directory
+- name: create runc cache dir
   ansible.builtin.file:
     path: "{{ runc_archive_dir }}"
     state: directory
@@ -16,7 +16,7 @@
     mode: "0755"
   become: True
 
-- name: runc | download archive
+- name: download runc
   ansible.builtin.include_role:
     name: download
   vars:
@@ -26,7 +26,7 @@
     download_url: "{{ runc_binary_url }}"
     download_dest: "{{ runc_binary_path }}"
 
-- name: runc | copy binary
+- name: copy runc binary
   ansible.builtin.copy:
     src: "{{ runc_binary_path }}"
     dest: /usr/local/bin/runc

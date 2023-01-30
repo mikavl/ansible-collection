@@ -1,13 +1,13 @@
 ---
 
-- name: cni-plugins | version check
+- name: check cni-plugins version
   ansible.builtin.include_role:
     name: github_version
   vars:
     github_version_current: "{{ cni_plugins_version }}"
     github_version_repo: "{{ cni_plugins_repo }}"
 
-- name: cni-plugins | create archive directory
+- name: create cni-plugins cache dir
   ansible.builtin.file:
     path: "{{ cni_plugins_archive_dir }}"
     state: directory
@@ -16,7 +16,7 @@
     mode: "0755"
   become: True
 
-- name: cni-plugins | create directory
+- name: create cni-plugins dir
   ansible.builtin.file:
     path: "{{ cni_plugins_dir }}"
     state: directory
@@ -25,7 +25,7 @@
     mode: "0755"
   become: True
 
-- name: cni-plugins | download archive
+- name: download cni-plugins
   ansible.builtin.include_role:
     name: download
   vars:
@@ -34,7 +34,7 @@
     download_url: "{{ cni_plugins_archive_url }}"
     download_dest: "{{ cni_plugins_archive_path }}"
 
-- name: cni-plugins | extract archive
+- name: extract cni-plugins
   ansible.builtin.include_role:
     name: extract
   vars:

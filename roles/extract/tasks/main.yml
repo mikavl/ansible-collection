@@ -1,12 +1,12 @@
 ---
 
-- name: extract | assert facts
+- name: assert extract vars
   ansible.builtin.assert:
     that:
       - extract_src is defined
       - extract_dest is defined
 
-- name: extract | create temporary directory
+- name: create temporary directory
   ansible.builtin.tempfile:
     state: directory
   register: extract_tempfile
@@ -14,20 +14,20 @@
 
 - block:
 
-    - name: extract | unarchive
+    - name: unarchive file
       ansible.builtin.unarchive:
         src: "{{ extract_src }}"
         dest: "{{ extract_tempfile.path }}"
         remote_src: True
       changed_when: False
 
-    - name: extract | find extracted files
+    - name: find extracted files
       ansible.builtin.find:
         path: "{{ extract_tempfile.path }}{{ extract_subpath }}"
         patterns: "{{ extract_patterns }}"
       register: extract_find
 
-    - name: extract | copy files
+    - name: copy extracted files
       ansible.builtin.copy:
         src: "{{ item.path }}"
         dest: "{{ extract_dest }}/{{ extract_filename }}"
@@ -44,7 +44,7 @@
 
   always:
 
-    - name: extract | remove temporary directory
+    - name: remove temporary directory
       ansible.builtin.file:
         path: "{{ extract_tempfile.path }}"
         state: absent
