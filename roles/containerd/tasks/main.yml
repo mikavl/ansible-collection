@@ -1,5 +1,12 @@
 ---
 
+- name: containerd | version check
+  ansible.builtin.include_role:
+    name: github-version
+  vars:
+    github_version_current: "{{ containerd_version }}"
+    github_version_repo: "{{ containerd_repo }}"
+
 - name: containerd | create archive directory
   ansible.builtin.file:
     path: "{{ containerd_archive_dir }}"

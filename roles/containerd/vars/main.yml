@@ -11,7 +11,9 @@ containerd_config_path: "{{ containerd_config_dir }}/config.toml"
 
 containerd_system: "{{ ansible_system | lower }}"
 
-containerd_archive_url: https://github.com/containerd/containerd/releases/download/v{{ containerd_version }}/containerd-{{ containerd_version }}-{{ containerd_system }}-{{ containerd_architecture }}.tar.gz
+containerd_repo: containerd/containerd
+
+containerd_archive_url: https://github.com/{{ containerd_repo }}/releases/download/v{{ containerd_version }}/containerd-{{ containerd_version }}-{{ containerd_system }}-{{ containerd_architecture }}.tar.gz
 
 containerd_archive_checksum_url: "{{ containerd_archive_url }}.sha256sum"
 
