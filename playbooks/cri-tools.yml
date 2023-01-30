@@ -1,0 +1,6 @@
+---
+
+- name: setup cri-tools
+  hosts: "{{ targets }}"
+  roles:
+    - cri-tools
