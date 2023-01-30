@@ -1,0 +1,5 @@
+---
+
+github_version_latest: "{{ (lookup('ansible.builtin.url', github_version_url, split_lines=False) | from_json).tag_name | regex_replace('^v', '') }}"
+
+github_version_url: "https://api.github.com/repos/{{ github_version_repo }}/releases/latest"

@@ -45,3 +45,4 @@
       ansible.builtin.file:
         path: "{{ extract_tempfile.path }}"
         state: absent
+      changed_when: False

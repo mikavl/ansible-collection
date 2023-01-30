@@ -1,0 +1,32 @@
+---
+
+- name: cri-tools | version check
+  ansible.builtin.include_role:
+    name: github-version
+  vars:
+    github_version_current: "{{ cri_tools_version }}"
+    github_version_repo: "{{ cri_tools_repo }}"
+
+- name: cri-tools | create archive directory
+  ansible.builtin.file:
+    path: "{{ cri_tools_archive_dir }}"
+    state: directory
+  become: True
+
+- name: cri-tools | download archive
+  ansible.builtin.include_role:
+    name: download
+  vars:
+    download_checksum_url: "{{ cri_tools_archive_checksum_url }}"
+    download_checksum_dest: "{{ cri_tools_archive_checksum_path }}"
+    download_url: "{{ cri_tools_archive_url }}"
+    download_dest: "{{ cri_tools_archive_path }}"
+
+- name: cri-tools | extract archive
+  ansible.builtin.include_role:
+    name: extract
+  vars:
+    extract_src: "{{ cri_tools_archive_path }}"
+    extract_dest: /usr/local/bin
+    extract_patterns: crictl
+    extract_mode: "0755"

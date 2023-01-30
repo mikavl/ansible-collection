@@ -1,0 +1,12 @@
+---
+
+- name: github-version | assert facts
+  ansible.builtin.assert:
+    that:
+      - github_version_repo is defined
+      - github_version_current is defined
+
+- name: github-version | notify version bump
+  ansible.builtin.debug:
+    msg: "newer version of {{ github_version_repo }} available: {{ github_version_current }} -> {{ github_version_latest }}"
+  when: "github_version_latest is version(github_version_current, '>')"

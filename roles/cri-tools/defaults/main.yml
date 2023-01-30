@@ -1,0 +1,5 @@
+---
+
+cri_tools_archive_dir: "{{ archive_dir }}/cri-tools"
+
+cri_tools_version: "1.26.0"
