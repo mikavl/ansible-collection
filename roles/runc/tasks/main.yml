@@ -11,6 +11,10 @@
   ansible.builtin.file:
     path: "{{ runc_archive_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: True
 
 - name: runc | download archive
   ansible.builtin.include_role:
@@ -27,4 +31,7 @@
     src: "{{ runc_binary_path }}"
     dest: /usr/local/bin/runc
     remote_src: True
+    owner: root
+    group: root
     mode: "0755"
+  become: True

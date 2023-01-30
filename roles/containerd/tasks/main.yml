@@ -11,6 +11,10 @@
   ansible.builtin.file:
     path: "{{ containerd_archive_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: True
 
 - name: containerd | download archive
   ansible.builtin.include_role:
@@ -34,26 +38,39 @@
   ansible.builtin.get_url:
     url: "{{ containerd_systemd_service_unit_file_url }}"
     dest: "{{ containerd_systemd_service_unit_file_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  become: True
   notify:
-    - containerd | systemctl daemon-reload
-    - containerd | systemctl restart
+    - reload containerd
+    - restart containerd
 
-- name: containerd | create configuration directory
+- name: create containerd config dir
   ansible.builtin.file:
     path: "{{ containerd_config_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: True
 
-- name: containerd | create configuration file
+- name: configure containerd
   ansible.builtin.template:
     src: config.toml.j2
     dest: "{{ containerd_config_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  become: True
   notify:
-    - containerd | systemctl restart
+    - restart containerd
 
 - meta: flush_handlers
 
-- name: containerd | enable and start systemd service
+- name: enable and start containerd
   ansible.builtin.systemd:
     name: "{{ containerd_systemd_service_name }}"
     state: started
     enabled: True
+  become: True

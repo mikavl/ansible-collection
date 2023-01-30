@@ -11,11 +11,19 @@
   ansible.builtin.file:
     path: "{{ cni_plugins_archive_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: True
 
 - name: cni-plugins | create directory
   ansible.builtin.file:
     path: "{{ cni_plugins_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: True
 
 - name: cni-plugins | download archive
   ansible.builtin.include_role:

@@ -11,6 +11,9 @@
   ansible.builtin.file:
     path: "{{ cri_tools_archive_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "0755"
   become: True
 
 - name: cri-tools | download archive
