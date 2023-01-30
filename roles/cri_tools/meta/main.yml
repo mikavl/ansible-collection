@@ -1,6 +1,10 @@
 ---
 
 dependencies:
+  - role: github_version
+    vars:
+      github_version_current: "{{ cri_tools_version }}"
+      github_version_repo: "{{ cri_tools_repo }}"
   - role: cache
   - role: download
     vars:

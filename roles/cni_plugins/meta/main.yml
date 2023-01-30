@@ -1,6 +1,10 @@
 ---
 
 dependencies:
+  - role: github_version
+    vars:
+      github_version_current: "{{ cni_plugins_version }}"
+      github_version_repo: "{{ cni_plugins_repo }}"
   - role: cache
   - role: download
     vars:

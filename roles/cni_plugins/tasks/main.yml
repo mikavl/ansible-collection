@@ -1,12 +1,5 @@
 ---
 
-- name: check cni-plugins version
-  ansible.builtin.include_role:
-    name: github_version
-  vars:
-    github_version_current: "{{ cni_plugins_version }}"
-    github_version_repo: "{{ cni_plugins_repo }}"
-
 - name: create cni-plugins dir
   ansible.builtin.file:
     path: "{{ cni_plugins_dir }}"

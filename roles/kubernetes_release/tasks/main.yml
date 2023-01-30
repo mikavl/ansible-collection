@@ -1,12 +1,5 @@
 ---
 
-- name: check kubernetes-release version
-  ansible.builtin.include_role:
-    name: github_version
-  vars:
-    github_version_current: "{{ kubernetes_release_version }}"
-    github_version_repo: "{{ kubernetes_release_repo }}"
-
 - name: kubernetes-release | download systemd service unit file
   ansible.builtin.get_url:
     url: "{{ kubernetes_release_systemd_service_unit_file_url }}"

@@ -1,8 +1,0 @@
----
-
-- name: check cri-tools version
-  ansible.builtin.include_role:
-    name: github_version
-  vars:
-    github_version_current: "{{ cri_tools_version }}"
-    github_version_repo: "{{ cri_tools_repo }}"

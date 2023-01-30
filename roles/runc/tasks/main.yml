@@ -1,12 +1,5 @@
 ---
 
-- name: check runc version
-  ansible.builtin.include_role:
-    name: github_version
-  vars:
-    github_version_current: "{{ runc_version }}"
-    github_version_repo: "{{ runc_repo }}"
-
 - name: copy runc binary
   ansible.builtin.copy:
     src: "{{ runc_binary_path }}"

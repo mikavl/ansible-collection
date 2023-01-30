@@ -1,6 +1,10 @@
 ---
 
 dependencies:
+  - role: github_version
+    vars:
+      github_version_current: "{{ containerd_version }}"
+      github_version_repo: "{{ containerd_repo }}"
   - role: cache
   - role: download
     vars:
