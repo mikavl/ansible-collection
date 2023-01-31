@@ -30,7 +30,7 @@
     dest: /etc/modules-load.d/kubeadm.conf
     owner: root
     group: root
-    mode: "0644"
+    mode: 0644
   become: True
   notify:
     - kubeadm modprobe
@@ -41,7 +41,7 @@
     dest: /etc/sysctl.d/90-kubeadm.conf
     owner: root
     group: root
-    mode: "0644"
+    mode: 0644
   become: True
   notify:
     - kubeadm sysctl

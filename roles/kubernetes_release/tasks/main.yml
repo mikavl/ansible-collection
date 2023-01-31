@@ -18,6 +18,7 @@
   ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
+    force: True
     owner: root
     group: root
     mode: 0644
