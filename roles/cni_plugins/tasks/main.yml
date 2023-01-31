@@ -1,5 +1,15 @@
 ---
 
+- name: download cni-plugins
+  ansible.builtin.get_url:
+    url: "{{ cni_plugins_url }}"
+    dest: "{{ cni_plugins_dest }}"
+    checksum: "sha256:{{ cni_plugins_checksum }}"
+    owner: root
+    group: root
+    mode: 0644
+  become: True
+
 - name: create cni-plugins dir
   ansible.builtin.file:
     path: "{{ cni_plugins_dir }}"

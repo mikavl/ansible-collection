@@ -6,8 +6,3 @@ dependencies:
       github_version_current: "{{ cni_plugins_version }}"
       github_version_repo: "{{ cni_plugins_repo }}"
   - role: cache
-  - role: download
-    vars:
-      download_checksum_url: "{{ cni_plugins_checksum_url }}"
-      download_url: "{{ cni_plugins_url }}"
-      download_dest: "{{ cni_plugins_dest }}"

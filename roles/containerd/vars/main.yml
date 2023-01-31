@@ -25,3 +25,6 @@ containerd_service_url: "https://raw.githubusercontent.com/containerd/containerd
 containerd_service_name: "{{ containerd_service_url | basename }}"
 
 containerd_service_dest: "/etc/systemd/system/{{ containerd_service_name }}"
+
+
+containerd_checksum: "{{ lookup('ansible.builtin.url', containerd_checksum_url).split() | first }}"

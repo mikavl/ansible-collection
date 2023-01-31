@@ -16,3 +16,5 @@ cni_plugins_dest: "{{ cni_plugins_cache_dir }}/{{ cni_plugins_url | basename }}"
 cni_plugins_checksum_url: "{{ cni_plugins_url }}.sha256"
 
 cni_plugins_dir: "/opt/cni/bin"
+
+cni_plugins_checksum: "{{ lookup('ansible.builtin.url', cni_plugins_checksum_url).split() | first }}"

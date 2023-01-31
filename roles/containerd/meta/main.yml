@@ -6,8 +6,3 @@ dependencies:
       github_version_current: "{{ containerd_version }}"
       github_version_repo: "{{ containerd_repo }}"
   - role: cache
-  - role: download
-    vars:
-      download_checksum_url: "{{ containerd_checksum_url }}"
-      download_url: "{{ containerd_url }}"
-      download_dest: "{{ containerd_dest }}"
