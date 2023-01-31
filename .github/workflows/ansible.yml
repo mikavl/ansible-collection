@@ -19,7 +19,8 @@ jobs:
           python-version: "3.9"
           cache: "pip"
       - run: pip install -r requirements.txt
-      - run: ls -lh /usr/bin/python3
+      - run: ls -lh /usr/bin/python3.10
+      - run: ls -lh /opt/hostedtoolcache/Python/
       - run: sudo apt-get update && sudo apt-get install --assume-yes --no-install-recommends ansible
       - run: python --version
       - run: python3 --version
