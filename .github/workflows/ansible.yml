@@ -19,6 +19,7 @@ jobs:
           python-version: "3.9"
           cache: "pip"
       - run: pip install -r requirements.txt
+      - run: ls -lh /usr/bin/python
       - run: sudo apt-get update && sudo apt-get install --assume-yes --no-install-recommends ansible
       - run: python --version
       - run: python3 --version
