@@ -9,6 +9,7 @@
     #include:
     #  - bin/*
     extra_opts:
+      - --strip-components=1
       - --wildcards
       - bin/*
     owner: root
