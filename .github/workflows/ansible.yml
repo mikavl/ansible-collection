@@ -20,6 +20,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install --assume-yes --no-install-recommends ansible
       - run: python --version
       - run: python3 --version
+      - run: ansible -m setup localhost -i "localhost," --connection local
       - name: Install dependencies
         run: |
           sudo python -m pip install --upgrade pip
