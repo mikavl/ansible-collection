@@ -16,8 +16,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: |
           pipx install ansible-base
-          pipx install requests
-      - run: ansible -m setup localhost -i "localhost," --connection local
+          pipx inject ansible-base requests
       - uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: playbooks/containerd.yml
