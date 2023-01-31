@@ -10,16 +10,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  ansible:
+    strategy:
+      matrix:
+        playbook:
+          - cni_plugins
+          - containerd
+          - cri_tools
+          - kubeadm
+          - kubectl
+          - kubelet
+          - runc
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: pipx list
       - run: |
           pipx inject ansible-core requests
       - uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: playbooks/containerd.yml
+          playbook: playbooks/${{ matrix.playbook }}.yml
           inventory: |
             localhost
           options: |
