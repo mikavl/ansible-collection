@@ -1,15 +1,12 @@
 ---
 
-kubernetes_release_repo: kubernetes/release
+kubernetes_release_repo: "kubernetes/release"
+kubernetes_release_url: "https://raw.githubusercontent.com/{{ kubernetes_release_repo }}/v{{ kubernetes_release_version }}/cmd/kubepkg/templates/latest/deb/"
 
-kubernetes_release_systemd_service_unit_file_url: https://raw.githubusercontent.com/{{ kubernetes_release_repo }}/v{{ kubernetes_release_version }}/cmd/kubepkg/templates/latest/deb/kubelet/lib/systemd/system/kubelet.service
+kubernetes_release_service_url: "{{ kubernetes_release_url }}/kubelet/lib/systemd/system/kubelet.service"
+kubernetes_release_service_path: "/etc/systemd/system/{{ kubernetes_release_service_url | basename }}"
+kubernetes_release_service_name: "{{ kubernetes_release_service_url | basename }}"
 
-kubernetes_release_systemd_service_unit_file_path: "{{ kubernetes_release_cache_dir }}/{{ kubernetes_release_systemd_service_unit_file_url | basename }}.v{{ kubernetes_release_version }}"
-
-kubernetes_release_systemd_service_config_file_url: "https://raw.githubusercontent.com/kubernetes/release/v{{ kubernetes_release_version }}/cmd/kubepkg/templates/latest/deb/kubeadm/10-kubeadm.conf"
-
-kubernetes_release_systemd_service_config_file_path: "{{ kubernetes_release_cache_dir }}/{{ kubernetes_release_systemd_service_config_file_url | basename }}.v{{ kubernetes_release_version }}"
-
-kubernetes_release_systemd_service_name: "{{ kubernetes_release_systemd_service_unit_file_url | basename }}"
-
-kubernetes_release_systemd_service_config_dir: "/etc/systemd/system/{{ kubernetes_release_systemd_service_unit_file_url | basename }}.d"
+kubernetes_release_config_dir: "/etc/systemd/system/{{ kubernetes_release_service_name }}.d"
+kubernetes_release_config_url: "{{ kubernetes_release_url }}/kubeadm/10-kubeadm.conf"
+kubernetes_release_config_path: "{{ kubernetes_release_config_dir }}/{{ kubernetes_release_config_url | basename }}"

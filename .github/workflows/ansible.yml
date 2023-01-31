@@ -20,6 +20,7 @@ jobs:
           - kubeadm
           - kubectl
           - kubelet
+          - kubernetes_release
           - runc
     runs-on: ubuntu-latest
     steps:
