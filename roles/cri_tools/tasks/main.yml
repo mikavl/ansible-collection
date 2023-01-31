@@ -1,0 +1,21 @@
+---
+
+- name: download cri-tools
+  ansible.builtin.get_url:
+    url: "{{ cri_tools_url }}"
+    dest: "{{ cri_tools_path }}"
+    checksum: "sha256:{{ cri_tools_checksum }}"
+    owner: root
+    group: root
+    mode: 0644
+  become: True
+
+- name: unarchive cri-tools
+  ansible.builtin.unarchive:
+    src: "{{ cri_tools_path }}"
+    dest: "{{ cri_tools_dir }}"
+    remote_src: True
+    owner: root
+    group: root
+    mode: "0755"
+  become: True

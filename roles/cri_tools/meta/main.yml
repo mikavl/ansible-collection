@@ -6,14 +6,3 @@ dependencies:
       github_version_current: "{{ cri_tools_version }}"
       github_version_repo: "{{ cri_tools_repo }}"
   - role: cache
-  - role: download
-    vars:
-      download_checksum_url: "{{ cri_tools_checksum_url }}"
-      download_url: "{{ cri_tools_url }}"
-      download_dest: "{{ cri_tools_dest }}"
-  - role: extract
-    vars:
-      extract_src: "{{ cri_tools_dest }}"
-      extract_dest: "/usr/local/bin"
-      extract_patterns: "crictl"
-      extract_mode: "0755"

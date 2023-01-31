@@ -3,7 +3,7 @@
 - name: download cni-plugins
   ansible.builtin.get_url:
     url: "{{ cni_plugins_url }}"
-    dest: "{{ cni_plugins_dest }}"
+    dest: "{{ cni_plugins_path }}"
     checksum: "sha256:{{ cni_plugins_checksum }}"
     owner: root
     group: root
@@ -21,7 +21,7 @@
 
 - name: unarchive cni-plugins
   ansible.builtin.unarchive:
-    src: "{{ cni_plugins_dest }}"
+    src: "{{ cni_plugins_path }}"
     dest: "{{ cni_plugins_dir }}"
     remote_src: True
     owner: root
