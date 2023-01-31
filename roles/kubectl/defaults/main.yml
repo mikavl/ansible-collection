@@ -2,4 +2,4 @@
 
 kubectl_cache_dir: "{{ cache_dir }}"
 
-kubectl_version: "1.26.0"
+kubectl_version: "1.26.1"
