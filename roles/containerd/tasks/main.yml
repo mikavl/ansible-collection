@@ -5,10 +5,12 @@
     src: "{{ containerd_dest }}"
     dest: "{{ containerd_dir }}"
     remote_src: True
-    include:
-      - bin/*
+    # Not supported in Ansible 2.10, so use extra_opts
+    #include:
+    #  - bin/*
     extra_opts:
       - --wildcards
+      - bin/*
     owner: root
     group: root
     mode: "0755"
