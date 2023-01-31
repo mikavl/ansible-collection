@@ -7,6 +7,8 @@
     remote_src: True
     include:
       - bin/*
+    extra_opts:
+      - --wildcards
     owner: root
     group: root
     mode: "0755"
