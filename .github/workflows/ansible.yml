@@ -17,14 +17,12 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.9"
+          cache: "pip"
+      - run: pip install -r requirements.txt
       - run: sudo apt-get update && sudo apt-get install --assume-yes --no-install-recommends ansible
       - run: python --version
       - run: python3 --version
       - run: ansible -m setup localhost -i "localhost," --connection local
-      - name: Install dependencies
-        run: |
-          sudo python -m pip install --upgrade pip
-          sudo pip install -r requirements.txt
       - uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: playbooks/containerd.yml
