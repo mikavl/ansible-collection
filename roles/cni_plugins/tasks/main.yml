@@ -15,6 +15,8 @@
     dest: "{{ cni_plugins_dir }}"
     include:
       - bin/*
+    extra_opts:
+      - --wildcards
     remote_src: True
     owner: root
     group: root
