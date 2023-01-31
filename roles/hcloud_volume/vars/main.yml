@@ -1,0 +1,12 @@
+---
+
+hcloud_volume_path: "/dev/disk/by-id/scsi-0HC_Volume_{{ hcloud_volume_id }}"
+
+hcloud_volume_luks_dir: "/etc/luks"
+
+hcloud_volume_header_path: "{{ hcloud_volume_luks_dir }}/{{ hcloud_volume_id }}.img"
+hcloud_volume_key_path: "{{ hcloud_volume_luks_dir }}/{{ hcloud_volume_id }}.key"
+
+hcloud_volume_crypt: "{{ hcloud_volume_path | basename }}_crypt"
+
+hcloud_volume_mapper_path: "/dev/mapper/{{ hcloud_volume_crypt }}"

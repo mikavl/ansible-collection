@@ -1,0 +1,5 @@
+---
+
+- name: start hcloud-volume
+  ansible.builtin.command: "cryptdisks_start {{ hcloud_volume_crypt | quote }}"
+  become: True

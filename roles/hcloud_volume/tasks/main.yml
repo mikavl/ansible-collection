@@ -1,0 +1,63 @@
+---
+
+- name: create hcloud-volume luks dir
+  ansible.builtin.file:
+    path: "{{ hcloud_volume_luks_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+  become: True
+
+- name: download hcloud-volume files
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0600
+  become: True
+  loop:
+    - url: "{{ hcloud_volume_key_url }}"
+      dest: "{{ hcloud_volume_key_path }}"
+    - url: "{{ hcloud_volume_header_url }}"
+      dest: "{{ hcloud_volume_header_path }}"
+
+- name: configure hcloud-volume crypttab
+  community.general.crypttab:
+    name: "{{ hcloud_volume_crypt }}"
+    backing_device: "{{ hcloud_volume_path }}"
+    password: "{{ hcloud_volume_key_path }}"
+    opts: "luks,header={{ hcloud_volume_header_path }}"
+    state: present
+  become: True
+  no_log: True
+  notify:
+    - start hcloud-volume
+
+- meta: flush_handlers
+
+- name: create hcloud-volume filesystem
+  community.general.filesystem:
+    dev: "{{ hcloud_volume_mapper_path }}"
+    fstype: "{{ hcloud_volume_fstype }}"
+  become: True
+
+- name: create hcloud-volume mountpoint
+  ansible.builtin.file:
+    path: "{{ hcloud_volume_mountpoint }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  become: True
+
+- name: mount hcloud-volume
+  ansible.posix.mount:
+    path: "{{ hcloud_volume_mountpoint }}"
+    src: "{{ hcloud_volume_mapper_path }}"
+    fstype: "{{ hcloud_volume_fstype }}"
+    state: mounted
+    opts: "{{ hcloud_volume_opts | join(',') }}"
+    passno: 2
+  become: True
