@@ -17,10 +17,7 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
-      - name: Configure Ansible
-        run: echo -e "[defaults]\nfilter_plugins = filter_plugins\nroles_path = roles" > ansible.cfg
-
+      - run: sudo apt-get update && sudo apt-get install --assume-yes --no-install-recommends ansible
       - uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: playbooks/containerd.yml
