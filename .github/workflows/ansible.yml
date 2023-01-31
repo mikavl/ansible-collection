@@ -14,8 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install requests library
-        run: sudo apt-get update && sudo apt-get install --assume-yes --no-install-recommends python-requests
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
       - name: Configure Ansible
         run: echo -e "[defaults]\nfilter_plugins = filter_plugins\nroles_path = roles" > ansible.cfg
       - name: Run playbooks
