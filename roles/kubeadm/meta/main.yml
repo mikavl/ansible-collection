@@ -2,9 +2,3 @@
 
 dependencies:
   - role: cache
-  - role: download
-    vars:
-      download_checksum_url: "{{ kubeadm_checksum_url }}"
-      download_checksum_only: True
-      download_url: "{{ kubeadm_url }}"
-      download_dest: "{{ kubeadm_dest }}"

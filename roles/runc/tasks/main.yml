@@ -1,0 +1,11 @@
+---
+
+- name: download runc
+  ansible.builtin.get_url:
+    url: "{{ runc_url }}"
+    dest: "{{ runc_path }}"
+    checksum: "sha256:{{ runc_checksum }}"
+    owner: root
+    group: root
+    mode: 0755
+  become: True

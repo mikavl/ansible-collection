@@ -1,0 +1,11 @@
+---
+
+- name: download kubelet
+  ansible.builtin.get_url:
+    url: "{{ kubelet_url }}"
+    dest: "{{ kubelet_path }}"
+    checksum: "sha256:{{ kubelet_checksum }}"
+    owner: root
+    group: root
+    mode: 0755
+  become: True

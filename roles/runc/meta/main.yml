@@ -6,9 +6,3 @@ dependencies:
       github_version_current: "{{ runc_version }}"
       github_version_repo: "{{ runc_repo }}"
   - role: cache
-  - role: download
-    vars:
-      download_checksum_url: "{{ runc_checksums_url }}"
-      download_checksum_regex: '^([a-z0-9]+)\s+runc\.{{ runc_architecture }}$'
-      download_url: "{{ runc_url }}"
-      download_dest: "{{ runc_dest }}"

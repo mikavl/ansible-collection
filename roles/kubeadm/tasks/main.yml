@@ -1,5 +1,15 @@
 ---
 
+- name: download kubeadm
+  ansible.builtin.get_url:
+    url: "{{ kubeadm_url }}"
+    dest: "{{ kubeadm_path }}"
+    checksum: "sha256:{{ kubeadm_checksum }}"
+    owner: root
+    group: root
+    mode: 0755
+  become: True
+
 - name: install kubeadm packages
   ansible.builtin.apt:
     name: "{{ kubeadm_packages }}"

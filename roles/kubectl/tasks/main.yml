@@ -1,0 +1,11 @@
+---
+
+- name: download kubectl
+  ansible.builtin.get_url:
+    url: "{{ kubectl_url }}"
+    dest: "{{ kubectl_path }}"
+    checksum: "sha256:{{ kubectl_checksum }}"
+    owner: root
+    group: root
+    mode: 0755
+  become: True

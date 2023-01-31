@@ -1,13 +1,13 @@
 ---
 
+kubelet_system: "{{ ansible_system | lower }}"
 kubelet_architecture: "{{ {
   'aarch64': 'arm64',
   'x86_64': 'amd64',
 } [ansible_architecture] }}"
 
-kubelet_system: "{{ ansible_system | lower }}"
-
 kubelet_url: "https://dl.k8s.io/release/v{{ kubelet_version }}/bin/{{ kubelet_system }}/{{ kubelet_architecture }}/kubelet"
-kubelet_dest: "/usr/local/bin/kubelet"
+kubelet_path: "/usr/local/bin/kubelet"
 
 kubelet_checksum_url: "{{ kubelet_url }}.sha256"
+kubelet_checksum: "{{ lookup('ansible.builtin.url', kubelet_checksum_url) }}"
