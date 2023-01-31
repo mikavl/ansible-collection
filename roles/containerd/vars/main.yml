@@ -5,6 +5,8 @@ containerd_architecture: "{{ {
   'x86_64': 'amd64',
 } [ansible_architecture] }}"
 
+containerd_dir: /usr/local/bin
+
 containerd_config_dir: /etc/containerd
 
 containerd_config_dest: "{{ containerd_config_dir }}/config.toml"

@@ -13,10 +13,6 @@
   ansible.builtin.unarchive:
     src: "{{ cni_plugins_dest }}"
     dest: "{{ cni_plugins_dir }}"
-    include:
-      - bin/*
-    extra_opts:
-      - --wildcards
     remote_src: True
     owner: root
     group: root
