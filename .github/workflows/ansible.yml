@@ -18,10 +18,12 @@ jobs:
         with:
           python-version: "3.9"
       - run: sudo apt-get update && sudo apt-get install --assume-yes --no-install-recommends ansible
+      - run: python --version
+      - run: python3 --version
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          sudo python -m pip install --upgrade pip
+          sudo pip install -r requirements.txt
       - uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: playbooks/containerd.yml
