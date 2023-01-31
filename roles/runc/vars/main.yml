@@ -13,4 +13,4 @@ runc_path: "/usr/local/bin/runc"
 runc_checksums_url: "{{ runc_url | dirname }}/runc.sha256sum"
 
 runc_checksum_regex: '^([a-z0-9]+)\s+runc\.{{ runc_architecture }}$'
-runc_checksum: "{{ lookup('ansible.builtin.url', containerd_checksum_url) | regex_search(runc_checksum_regex, '\\1', multiline=True) }}"
+runc_checksum: "{{ lookup('ansible.builtin.url', runc_checksum_url) | regex_search(runc_checksum_regex, '\\1', multiline=True) }}"
