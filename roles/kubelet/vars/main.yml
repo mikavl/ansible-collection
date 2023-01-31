@@ -6,6 +6,8 @@ kubelet_architecture: "{{ {
   'x86_64': 'amd64',
 } [ansible_architecture] }}"
 
+kubelet_label: "stable"
+
 kubelet_url: "https://dl.k8s.io/release/v{{ kubelet_version }}/bin/{{ kubelet_system }}/{{ kubelet_architecture }}/kubelet"
 kubelet_path: "/usr/local/bin/kubelet"
 
