@@ -1,5 +1,10 @@
 ---
 
+- name: check kubeadm version
+  ansible.builtin.debug:
+    msg: "kubeadm update available: {{ kubeadm_version }} -> {{ kubeadm_label | kube_latest }}"
+  when: "not kubeadm_version | kube_is_latest(kubeadm_label)"
+
 - name: download kubeadm
   ansible.builtin.get_url:
     url: "{{ kubeadm_url }}"

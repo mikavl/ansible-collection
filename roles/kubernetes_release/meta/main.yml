@@ -1,8 +1,4 @@
 ---
 
 dependencies:
-  - role: github_version
-    vars:
-      github_version_current: "{{ kubernetes_release_version }}"
-      github_version_repo: "{{ kubernetes_release_repo }}"
   - role: cache

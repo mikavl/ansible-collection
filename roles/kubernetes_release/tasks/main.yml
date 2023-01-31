@@ -1,5 +1,10 @@
 ---
 
+- name: check kubernetes-release version
+  ansible.builtin.debug:
+    msg: "kubernetes-release update available: {{ kubernetes_release_version }} -> {{ kubernetes_release_repo | gh_latest }}"
+  when: "not kubernetes_release_version | gh_is_latest(kubernetes_release_repo)"
+
 - name: kubernetes-release | download systemd service unit file
   ansible.builtin.get_url:
     url: "{{ kubernetes_release_systemd_service_unit_file_url }}"

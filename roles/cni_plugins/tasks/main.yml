@@ -1,5 +1,10 @@
 ---
 
+- name: check cni-plugins version
+  ansible.builtin.debug:
+    msg: "cni-plugins update available: {{ cni_plugins_version }} -> {{ cni_plugins_repo | gh_latest }}"
+  when: "not cni_plugins_version | gh_is_latest(cni_plugins_repo)"
+
 - name: download cni-plugins
   ansible.builtin.get_url:
     url: "{{ cni_plugins_url }}"

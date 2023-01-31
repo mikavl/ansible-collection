@@ -1,5 +1,10 @@
 ---
 
+- name: check runc version
+  ansible.builtin.debug:
+    msg: "runc update available: {{ runc_version }} -> {{ runc_repo | gh_latest }}"
+  when: "not runc_version | gh_is_latest(runc_repo)"
+
 - name: download runc
   ansible.builtin.get_url:
     url: "{{ runc_url }}"
