@@ -1,0 +1,28 @@
+---
+
+- name: install ntp
+  ansible.builtin.apt:
+    name: "{{ ntp_packages }}"
+    state: present
+    purge: True
+    install_recommends: False
+    autoremove: True
+    update_cache: True
+  become: True
+
+- name: configure ntp
+  ansible.builtin.template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+  become: True
+  notify:
+    - restart ntp
+
+- meta: flush_handlers
+
+- name: enable and start ntp
+  ansible.builtin.systemd:
+    name: "{{ ntp_service_name }}"
+    state: started
+    enabled: True
+  become: True

@@ -1,0 +1,11 @@
+driftfile /var/lib/ntp/ntp.drift
+leapfile /usr/share/zoneinfo/leap-seconds.list
+{% for ntp_pool in ntp_pools %}
+pool {{ ntp_pool }} iburst
+{% endfor %}
+{% for ntp_server in ntp_servers %}
+server {{ ntp_server }} iburst
+{% endfor %}
+restrict 127.0.0.1
+restrict ::1
+restrict source notrap nomodify noquery

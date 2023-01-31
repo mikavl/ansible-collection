@@ -1,0 +1,6 @@
+---
+
+- name: setup ntp
+  hosts: "{{ targets }}"
+  roles:
+    - ntp
