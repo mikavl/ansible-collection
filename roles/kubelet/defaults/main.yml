@@ -1,5 +1,3 @@
 ---
 
-kubelet_cache_dir: "{{ cache_dir }}"
-
 kubelet_version: "1.26.1"

@@ -1,5 +1,3 @@
 ---
 
-kubeadm_cache_dir: "{{ cache_dir }}"
-
 kubeadm_version: "1.26.1"
