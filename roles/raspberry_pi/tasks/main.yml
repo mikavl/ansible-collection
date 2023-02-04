@@ -15,6 +15,10 @@
       dest: /boot/config.txt
     - src: interfaces.j2
       dest: /etc/network/interfaces
+    - src: hostname.j2
+      dest: /etc/hostname
+    - src: hosts.j2
+      dest: /etc/hosts
 
 - name: remove packages
   ansible.builtin.apt:
