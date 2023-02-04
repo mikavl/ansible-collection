@@ -1,0 +1,32 @@
+---
+
+- name: configure raspberry pi templates
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0644
+  become: True
+  loop:
+    - src: cmdline.txt.j2
+      dest: /boot/cmdline.txt
+    - src: config.txt.j2
+      dest: /boot/config.txt
+    - src: interfaces.j2
+      dest: /etc/network/interfaces
+
+- name: remove packages
+  ansible.builtin.apt:
+    name: "{{ raspberry_pi_packages_remove }}"
+    state: absent
+    purge: True
+    autoremove: True
+  become: True
+
+- name: remove files
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  become: True
+  loop: "{{ raspberry_pi_files_remove }}"

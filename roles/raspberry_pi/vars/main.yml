@@ -1,0 +1,9 @@
+---
+
+raspberry_pi_packages_remove:
+  - dhcpcd5
+
+raspberry_pi_files_remove:
+  - /etc/profile.d/at-dbus-fix.sh
+  - /etc/profile.d/sshpwd.sh
+  - /etc/profile.d/wifi-check.sh
