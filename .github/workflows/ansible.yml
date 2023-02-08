@@ -22,6 +22,7 @@ jobs:
           - kubelet
           - kubernetes_release
           - runc
+          - zabbix_agent
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
