@@ -18,3 +18,5 @@ zabbix_agent_packages:
   - zabbix-agent
 
 zabbix_agent_service_name: "zabbix-agent.service"
+
+zabbix_group: zabbix
