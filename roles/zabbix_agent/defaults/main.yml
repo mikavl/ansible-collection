@@ -1,3 +1,7 @@
 ---
 
 zabbix_agent_version: "6.0"
+
+zabbix_agent_server: "{{ zabbix_server }}"
+
+zabbix_agent_hostname: "{{ ansible_hostname }}"
