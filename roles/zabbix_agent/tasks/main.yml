@@ -34,7 +34,7 @@
     src: zabbix_agentd.conf.j2
     dest: /etc/zabbix/zabbix_agentd.conf
     owner: root
-    group: "{{ zabbix_group }}"
+    group: "{{ zabbix_agent_group }}"
     mode: "0640"
   become: True
   notify: restart zabbix-agent
