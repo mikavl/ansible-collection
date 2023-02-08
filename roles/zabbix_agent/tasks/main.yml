@@ -1,0 +1,22 @@
+---
+
+- name: create apt keyrings directory
+  ansible.builtin.file:
+    path: "/etc/apt/keyrings"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: True
+
+- name: setup zabbix-agent apt key
+  ansible.builtin.shell: "curl -fsSL {{ zabbix_agent_apt_key_url | quote }} | gpg --dearmor --output {{ zabbix_agent_apt_key_path | quote }}"
+  become: True
+  args:
+    creates: "{{ zabbix_agent_apt_key_path }}"
+
+- name: setup zabbix-agent apt repository
+  ansible.builtin.apt_repository:
+    repo: "{{ zabbix_agent_apt_repo }}"
+    filename: zabbix
+  become: True
