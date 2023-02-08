@@ -20,3 +20,30 @@
     repo: "{{ zabbix_agent_apt_repo }}"
     filename: zabbix
   become: True
+
+- name: install zabbix-agent packages
+  ansible.builtin.apt:
+    name: "{{ zabbix_agent_packages }}"
+    state: present
+    install_recommends: False
+    update_cache: True
+  become: True
+
+- name: configure zabbix-agent
+  ansible.builtin.template:
+    src: zabbix_agentd.conf.j2
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: root
+    group: "{{ zabbix_group }}"
+    mode: "0640"
+  become: True
+  notify: restart zabbix-agent
+
+- meta: flush_handlers
+
+- name: enable and start zabbix-agent
+  ansible.builtin.systemd:
+    name: "{{ zabbix_agent_service_name }}"
+    state: started
+    enabled: True
+  become: True
