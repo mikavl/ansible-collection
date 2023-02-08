@@ -2,6 +2,7 @@
 
 raspberry_pi_packages_remove:
   - dhcpcd5
+  - dphys-swapfile
 
 raspberry_pi_files_remove:
   - /etc/profile.d/at-dbus-fix.sh
