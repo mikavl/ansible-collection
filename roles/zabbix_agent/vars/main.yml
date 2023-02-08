@@ -2,8 +2,8 @@
 
 zabbix_agent_distribution: "{{ {
   'aarch64': 'raspbian',
-  'x86_64': ansible_distribution,
-} [ansible_distribution] }}"
+  'x86_64': ansible_distribution | lower,
+} [ansible_architecture] }}"
 
 zabbix_agent_distribution_release: "{{ ansible_distribution_release | lower }}"
 
