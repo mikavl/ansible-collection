@@ -36,3 +36,4 @@ jobs:
           options: |
             --connection local
             --extra-vars targets=localhost
+            --extra-vars zabbix_server=127.0.0.1
