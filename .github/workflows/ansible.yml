@@ -25,12 +25,21 @@ jobs:
           - zabbix_agent
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - run: |
           pipx inject ansible-core requests
+
+          tee requirements.yml << EOF
+          collections:
+            - name: https://github.com/mikavl/ansible-collection.git
+              type: git
+              version: main
+          EOF
+
+          ansible-galaxy install -r requirements.yml
+
       - uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: playbooks/${{ matrix.playbook }}.yml
+          playbook: mikavl.ansible.${{ matrix.playbook }}
           inventory: |
             localhost
           options: |
