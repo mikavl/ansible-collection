@@ -2,8 +2,8 @@
 
 - name: check kubelet version
   ansible.builtin.debug:
-    msg: "kubelet update available: {{ kubelet_version }} -> {{ kubelet_label | kube_latest }}"
-  when: "not kubelet_version | kube_is_latest(kubelet_label)"
+    msg: "kubelet update available: {{ kubelet_version }} -> {{ kubelet_label | mikavl.ansible.kube_latest }}"
+  when: "not kubelet_version | mikavl.ansible.kube_is_latest(kubelet_label)"
 
 - name: download kubelet
   ansible.builtin.get_url:

@@ -2,8 +2,8 @@
 
 - name: check kubectl version
   ansible.builtin.debug:
-    msg: "kubectl update available: {{ kubectl_version }} -> {{ kubectl_label | kube_latest }}"
-  when: "not kubectl_version | kube_is_latest(kubectl_label)"
+    msg: "kubectl update available: {{ kubectl_version }} -> {{ kubectl_label | mikavl.ansible.kube_latest }}"
+  when: "not kubectl_version | mikavl.ansible.kube_is_latest(kubectl_label)"
 
 - name: download kubectl
   ansible.builtin.get_url:

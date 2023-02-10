@@ -2,8 +2,8 @@
 
 - name: check kubernetes-release version
   ansible.builtin.debug:
-    msg: "kubernetes-release update available: {{ kubernetes_release_version }} -> {{ kubernetes_release_repo | gh_latest }}"
-  when: "not kubernetes_release_version | gh_is_latest(kubernetes_release_repo)"
+    msg: "kubernetes-release update available: {{ kubernetes_release_version }} -> {{ kubernetes_release_repo | mikavl.ansible.gh_latest }}"
+  when: "not kubernetes_release_version | mikavl.ansible.gh_is_latest(kubernetes_release_repo)"
 
 - name: create kubernetes-release config dir
   ansible.builtin.file:

@@ -2,8 +2,8 @@
 
 - name: check cri-tools version
   ansible.builtin.debug:
-    msg: "cri-tools update available: {{ cri_tools_version }} -> {{ cri_tools_repo | gh_latest }}"
-  when: "not cri_tools_version | gh_is_latest(cri_tools_repo)"
+    msg: "cri-tools update available: {{ cri_tools_version }} -> {{ cri_tools_repo | mikavl.ansible.gh_latest }}"
+  when: "not cri_tools_version | mikavl.ansible.gh_is_latest(cri_tools_repo)"
 
 - name: download cri-tools
   ansible.builtin.get_url:
