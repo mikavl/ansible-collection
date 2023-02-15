@@ -4,6 +4,7 @@
   ansible.builtin.debug:
     msg: "kubeadm update available: {{ kubeadm_version }} -> {{ kubeadm_label | mikavl.ansible.kube_latest }}"
   when: "not kubeadm_version | mikavl.ansible.kube_is_latest(kubeadm_label)"
+  tags: [ kubeadm, version ]
 
 - name: download kubeadm
   ansible.builtin.get_url:

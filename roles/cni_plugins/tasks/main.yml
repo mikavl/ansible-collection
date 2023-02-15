@@ -4,6 +4,7 @@
   ansible.builtin.debug:
     msg: "cni-plugins update available: {{ cni_plugins_version }} -> {{ cni_plugins_repo | mikavl.ansible.gh_latest }}"
   when: "not cni_plugins_version | mikavl.ansible.gh_is_latest(cni_plugins_repo)"
+  tags: [ cni_plugins, version ]
 
 - name: download cni-plugins
   ansible.builtin.get_url:

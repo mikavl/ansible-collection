@@ -4,6 +4,7 @@
   ansible.builtin.debug:
     msg: "containerd update available: {{ containerd_version }} -> {{ containerd_repo | mikavl.ansible.gh_latest }}"
   when: "not containerd_version | mikavl.ansible.gh_is_latest(containerd_repo)"
+  tags: [ containerd, version ]
 
 - name: download containerd
   ansible.builtin.get_url:

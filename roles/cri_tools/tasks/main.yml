@@ -4,6 +4,7 @@
   ansible.builtin.debug:
     msg: "cri-tools update available: {{ cri_tools_version }} -> {{ cri_tools_repo | mikavl.ansible.gh_latest }}"
   when: "not cri_tools_version | mikavl.ansible.gh_is_latest(cri_tools_repo)"
+  tags: [ cri_tools, version ]
 
 - name: download cri-tools
   ansible.builtin.get_url:
