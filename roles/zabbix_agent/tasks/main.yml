@@ -1,5 +1,13 @@
 ---
 
+- name: install required packages
+  ansible.builtin.apt:
+    name: "{{ zabbix_agent_required_packages }}"
+    state: present
+    update_cache: True
+    install_recommends: False
+  become: True
+
 - name: create apt keyrings directory
   ansible.builtin.file:
     path: "/etc/apt/keyrings"
