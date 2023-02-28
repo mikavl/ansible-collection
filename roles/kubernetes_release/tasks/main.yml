@@ -39,3 +39,21 @@
     name: "{{ kubernetes_release_service_name }}"
     enabled: True
   become: True
+
+- name: ensure kubernetes directory exists
+  ansible.builtin.file:
+    path: /etc/kubernetes
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  become: True
+
+- name: ensure kubernetes manifests directory exists
+  ansible.builtin.file:
+    path: /etc/kubernetes/manifests
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+  become: True
