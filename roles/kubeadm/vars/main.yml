@@ -18,6 +18,7 @@ kubeadm_packages:
   - apparmor
   - conntrack
   - ethtool
+  - iptables
   - socat
 
 kubeadm_modules:
