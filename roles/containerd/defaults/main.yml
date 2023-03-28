@@ -1,5 +1,0 @@
----
-
-containerd_cache_dir: "{{ cache_dir }}"
-
-containerd_version: "1.6.18"
