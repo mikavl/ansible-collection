@@ -1,6 +1,0 @@
----
-
-- name: setup cni-plugins
-  hosts: "{{ targets }}"
-  roles:
-    - cni_plugins

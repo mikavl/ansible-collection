@@ -1,6 +1,0 @@
----
-
-- name: setup runc
-  hosts: "{{ targets }}"
-  roles:
-    - runc

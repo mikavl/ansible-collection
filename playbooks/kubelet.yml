@@ -1,6 +1,0 @@
----
-
-- name: setup kubelet
-  hosts: "{{ targets }}"
-  roles:
-    - kubelet

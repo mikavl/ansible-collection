@@ -1,5 +1,25 @@
 ---
 
+- name: set timezone
+  ansible.builtin.template:
+    src: timezone.j2
+    dest: /etc/timezone
+    owner: root
+    group: root
+    mode: "0644"
+  become: True
+  when: "ntp_timezone is defined"
+
+- name: set localtime
+  ansible.builtin.file:
+    src: "/usr/share/zoneinfo/{{ ntp_timezone }}"
+    dest: /etc/localtime
+    state: link
+    force: True
+    follow: False
+  become: True
+  when: "ntp_timezone is defined"
+
 - name: install ntp
   ansible.builtin.apt:
     name: "{{ ntp_packages }}"
