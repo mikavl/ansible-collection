@@ -8,7 +8,6 @@
     group: root
     mode: "0644"
   become: True
-  when: "ntp_timezone is defined"
 
 - name: set localtime
   ansible.builtin.file:
@@ -18,7 +17,6 @@
     force: True
     follow: False
   become: True
-  when: "ntp_timezone is defined"
 
 - name: install ntp
   ansible.builtin.apt:
@@ -33,10 +31,10 @@
 - name: configure ntp
   ansible.builtin.template:
     src: ntp.conf.j2
-    dest: /etc/ntp.conf
+    dest: /etc/ntpsec/ntp.conf
   become: True
   notify:
-    - restart ntp
+    - "restart ntp service"
 
 - meta: flush_handlers
 

@@ -1,6 +1,6 @@
 ---
 
-- name: restart ntp
+- name: restart ntp service
   ansible.builtin.systemd:
     name: "{{ ntp_service_name }}"
     state: restarted

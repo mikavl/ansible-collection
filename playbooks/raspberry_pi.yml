@@ -1,6 +1,0 @@
----
-
-- name: setup raspberry pi
-  hosts: "{{ targets }}"
-  roles:
-    - raspberry_pi

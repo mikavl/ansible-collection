@@ -1,6 +1,6 @@
 ---
 
 ntp_packages:
-  - ntp
+  - ntpsec
 
 ntp_service_name: "ntp.service"

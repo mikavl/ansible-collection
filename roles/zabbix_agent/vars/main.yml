@@ -1,18 +1,9 @@
 ---
 
-zabbix_agent_distribution: "{{ {
-  'aarch64': 'raspbian',
-  'x86_64': ansible_distribution | lower,
-} [ansible_architecture] }}"
-
-zabbix_agent_distribution_release: "{{ ansible_distribution_release | lower }}"
-
-zabbix_agent_apt_keyrings_path: "/etc/apt/keyrings"
-
-zabbix_agent_apt_repo: "deb [signed-by={{ zabbix_agent_apt_key_path }}] https://repo.zabbix.com/zabbix/{{ zabbix_agent_version }}/{{ zabbix_agent_distribution }} {{ zabbix_agent_distribution_release }} main"
+zabbix_agent_apt_repo: "deb [signed-by={{ zabbix_agent_apt_key_path }}] https://repo.zabbix.com/zabbix/{{ zabbix_agent_version }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main"
 
 zabbix_agent_apt_key_url: "https://repo.zabbix.com/zabbix-official-repo.key"
-zabbix_agent_apt_key_path: "{{ zabbix_agent_apt_keyrings_path }}/{{ zabbix_agent_apt_key_url | basename | splitext | first}}.gpg"
+zabbix_agent_apt_key_path: "/etc/apt/keyrings/{{ zabbix_agent_apt_key_url | basename | splitext | first }}.gpg"
 
 zabbix_agent_required_packages:
   - curl

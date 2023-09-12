@@ -1,6 +1,0 @@
----
-
-- name: setup hcloud-volume
-  hosts: "{{ targets }}"
-  roles:
-    - hcloud_volume
