@@ -1,0 +1,6 @@
+---
+
+- name: setup postgresql
+  hosts: "{{ targets }}"
+  roles:
+    - postgres
