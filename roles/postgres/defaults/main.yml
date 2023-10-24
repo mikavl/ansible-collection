@@ -1,7 +1,0 @@
----
-
-postgres_config: {}
-
-postgres_pg_hba_config: []
-
-postgres_version: "15"

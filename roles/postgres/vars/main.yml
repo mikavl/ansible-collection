@@ -1,6 +1,0 @@
----
-
-postgres_packages:
-  - postgresql
-
-postgres_service_name: "postgresql.service"

@@ -1,7 +1,0 @@
----
-
-ntp_pools: []
-
-ntp_servers: []
-
-ntp_timezone: Europe/Helsinki
